@@ -1,37 +1,41 @@
 
-function Field(fieldName, fieldDocID, optionsToAdd) {
-	this.fieldName = fieldName;
-	this.fieldDocID = document.getElementById(fieldDocID);
-	this.optionsToAdd = optionsToAdd;
-	this.addOptions = function(){
-		this.optionsToAdd.forEach(function(opt){
-			this.option = document.createElement("option");
-			this.option.text = opt;
-			this.fieldDocID.add(this.option);
-		});
-	}
+var dictionary = {
+	"893cnur89734": "images/hughes/quote/yesBlank.png"
 }
 
+function Field(fieldName, fieldDocID, imageDocID) {
+	this.fieldName = fieldName;
+	this.fieldDocID = document.getElementById(fieldDocID);
+	this.fieldOptions = [];
+	this.imageDocID = document.getElementById(imageDocID);
+	this.imageOptions = [];
+}
 
-// Field.prototype = {
-// 	constructor: Field,
-// 	addOptions:function(optionsToAdd, fieldDocID){
-// 		this.fieldDocID = document.getElementById(fieldDocID);
-// 		for (i = 0; i < optionsToAdd.length; i++) {
-// 			this.option = document.createElement("option");
-// 			this.option.text = optionsToAdd[i];
-// 			this.fieldDocID.add(this.option);
-// 		}
-// 	}
-// }
+Field.prototype = {
+	constructor: Field,
+	addOptions:function(optionsToAdd){	
+		this.fieldOptions = (optionsToAdd).keys();
+	}
+	// setDefault:function(defaultIndex){		
+	// 	this.imageDocID.src = this.fieldOptions[defaultIndex];
+	// 	this.fieldDocID.options.selectedIndex = defaultIndex;
+	// 	}
+}
 
 window.addEventListener("load", function(){
 	// var quoteField = document.getElementById('quote');
-	var quoteObject = new Field("quote", "quote", ["Yes: Blank", "Yes: Prefilled (All Quotes)", "Yes: Prefilled (1/2 Verses)", "No: 3 Blank Lines"]);
-	// quoteObject.addOptions(["Yes: Blank", "Yes: Prefilled (All Quotes)", "Yes: Prefilled (1/2 Verses)", "No: 3 Blank Lines"], "quote");
-	// quoteObject = new Choice(["Yes: Blank", "Yes: Prefilled (All Quotes)", "Yes: Prefilled (1/2 Verses)", "No: 3 Blank Lines"], "quote", ["images/hughes/quote/yesBlank.png", "images/hughes/quote/yesAllQuotes.png", "images/hughes/quote/yesHalf.png", "images/hughes/quote/noLines.png"], "dashQuote", 0);
-	debugger;
+	var quoteObject = new Field("quote", "quote", "dashQuote");
+	quoteObject.addOptions({
+		"Yes: Blank": "images/hughes/quote/yesBlank.png",
+		"Yes: Prefilled (All Quotes)": "images/hughes/quote/yesAllQuotes.png",
+		"Yes: Prefilled (1/2 Verses)": "images/hughes/quote/yesHalf.png",
+		"No: 3 Blank Lines": "images/hughes/quote/noLines.png"
+	});
+debugger;
+	
+	// quoteObject.setDefault("Yes: Blank");
 
+	
 	var quoteImg = document.getElementById('dashQuote');
 	quote.addEventListener("change", function(){		
 		var i = quote.options[quote.selectedIndex].text;
