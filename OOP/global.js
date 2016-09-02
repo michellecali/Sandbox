@@ -35,15 +35,16 @@ window.addEventListener("load", function(){
 	// 	"No: 3 Blank Lines": "images/hughes/quote/noLines.png"
 	// });
 	var fieldOptions = document.getElementById("consistentID").querySelectorAll("option");
-	function getValues(array) {
-		debugger;
-		var newArray = [];
+	function getArray(array) {
+		var textValueArray = {};
 		for (var i = 0; i < array.length; i++) {
-			newArray.push(array[i].value);
+			textValueArray[array[i].text] = array[i].value;
+			// valuesArray.push(array[i].value);
 		}
-		return newArray;
+		return textValueArray;
 	};
-	var valuesOnly = getValues(fieldOptions);
+	var valuesOnly = getArray(fieldOptions);
+	debugger;
 
 	var field = document.getElementById("consistentID").children[2];
 	// quoteObject.setDefault("Yes: Blank");
