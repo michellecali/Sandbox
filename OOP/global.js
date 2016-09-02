@@ -14,7 +14,10 @@ function Field(fieldName, fieldDocID, imageDocID) {
 Field.prototype = {
 	constructor: Field,
 	addOptions:function(optionsToAdd){	
-		this.fieldOptions = optionsToAdd;
+		for (var i = 0; i < optionsToAdd.length; i++) {
+			this.fieldOptions.push(optionsToAdd[i]);
+		}
+		var fromArray = this.fieldOptions.keys();
 	}
 	// setDefault:function(defaultIndex){		
 	// 	this.imageDocID.src = this.fieldOptions[defaultIndex];
