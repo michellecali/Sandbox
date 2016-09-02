@@ -1,6 +1,9 @@
 
 var dictionary = {
-	"893cnur89734": "images/hughes/quote/yesBlank.png"
+	"foo1": "images/hughes/quote/yesBlank.png",
+	"foo2": "images/hughes/quote/yesAllQuotes.png",
+	"foo3": "images/hughes/dailyHeaderLeft/bullets.png",
+	"foo4": "images/hughes/dailyHeaderLeft/checkboxes.png",
 }
 
 function Field(fieldName, fieldDocID, imageDocID) {
@@ -24,30 +27,32 @@ Field.prototype = {
 
 window.addEventListener("load", function(){
 	// var quoteField = document.getElementById('quote');
-	var quoteObject = new Field("quote", "quote", "dashQuote");
-	quoteObject.addOptions({
-		"Yes: Blank": "images/hughes/quote/yesBlank.png",
-		"Yes: Prefilled (All Quotes)": "images/hughes/quote/yesAllQuotes.png",
-		"Yes: Prefilled (1/2 Verses)": "images/hughes/quote/yesHalf.png",
-		"No: 3 Blank Lines": "images/hughes/quote/noLines.png"
-	});
-debugger;
-	
+	// var quoteObject = new Field("quote", "quote", "dashQuote");
+	// quoteObject.addOptions({
+	// 	"Yes: Blank": "images/hughes/quote/yesBlank.png",
+	// 	"Yes: Prefilled (All Quotes)": "images/hughes/quote/yesAllQuotes.png",
+	// 	"Yes: Prefilled (1/2 Verses)": "images/hughes/quote/yesHalf.png",
+	// 	"No: 3 Blank Lines": "images/hughes/quote/noLines.png"
+	// });
+	var fieldOptions = document.getElementById("consistentID").querySelectorAll("option");
+	function getValues(array) {
+		debugger;
+		var newArray = [];
+		for (var i = 0; i < array.length; i++) {
+			newArray.push(array[i].value);
+		}
+		return newArray;
+	};
+	var valuesOnly = getValues(fieldOptions);
+
+	var field = document.getElementById("consistentID").children[2];
 	// quoteObject.setDefault("Yes: Blank");
 
 	
 	var quoteImg = document.getElementById('dashQuote');
-	quote.addEventListener("change", function(){		
-		var i = quote.options[quote.selectedIndex].text;
-		if (i === "Yes: Blank") {
-			dashQuote.src = "images/hughes/quote/yesBlank.png";
-		} else if (i === "Yes: Prefilled (All Quotes)") {
-			dashQuote.src = "images/hughes/quote/yesAllQuotes.png";
-		} else if (i === "YesHalf") {
-			dashQuote.src = "images/hughes/quote/yesHalf.png";
-		} else if (i === "NoLines") {
-			dashQuote.src = "images/hughes/quote/noLines.png";
-		}
+	field.addEventListener("change", function(){		
+		var i = field.options[field.selectedIndex].value;
+		dashQuote.src = dictionary[i];
 	});
 });
 
